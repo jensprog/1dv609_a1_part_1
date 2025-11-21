@@ -7,7 +7,7 @@ public class BugMissingNumberCheck implements IPassword {
     public BugMissingNumberCheck(String pw) throws Exception {
         String trimmedPW = pw.trim();
         if (isToShort(trimmedPW)) {
-            throw new Exception("To short password");
+            throw new Exception("Too short password");
         }
         // Bug: missing number check
         this.passwordHash = simpleHash(trimmedPW);

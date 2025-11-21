@@ -6,7 +6,7 @@ public class Password implements IPassword{
     public Password(String pw) throws Exception {
         String trimmedPW = pw.trim(); // Remove whitespace
         if (isToShort(trimmedPW)) {
-            throw new Exception("To short password");
+            throw new Exception("Too short password");
         }
         if (containsNumber(trimmedPW) == false) {
             throw new Exception("Does not contain a number");

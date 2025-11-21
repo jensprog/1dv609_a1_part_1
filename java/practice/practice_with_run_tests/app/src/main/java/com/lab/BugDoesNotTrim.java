@@ -7,7 +7,7 @@ class BugDoesNotTrim implements IPassword {
     public BugDoesNotTrim(String pw) throws Exception {
         // Bug: Don't trim whitespace
         if (isToShort(pw)) {
-            throw new Exception("To short password");
+            throw new Exception("Too short password");
         }
         if (containsNumber(pw) == false) {
             throw new Exception("Does not contain a number");

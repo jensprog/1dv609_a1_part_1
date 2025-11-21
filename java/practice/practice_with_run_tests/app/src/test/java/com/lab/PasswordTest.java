@@ -1,6 +1,7 @@
 package com.lab;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordTest {
     private IPassword getPassword(String s) throws Exception {
-        return (IPassword) new Password(s);
+         return (IPassword) new Password(s);
         // return (IPassword) new BugDoesNotTrim(s);
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugToShortPassword(s);
@@ -38,6 +39,33 @@ public class PasswordTest {
 
     @Test
     public void shouldAlwaysPass() throws Exception {
-        assertTrue(true);
+      assertTrue(true);
+    }
+
+    @Test
+    @DisplayName("Should return true if trim is correctly implemented")
+    void isPasswordSame_ShouldReturnTrue_ForTrimmedAndUntrimmedInput() throws Exception {
+      IPassword password1 = getPassword("somepassword1");
+      IPassword password2 = getPassword(" somepassword1 ");
+      assertTrue(password1.isPasswordSame(password2));
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the password is too short")
+    void isToShort_ShouldThrowExceptionFor_TooShortPassword() {
+      assertThrows(Exception.class, () -> getPassword("password123"));
+    }
+
+    @Test
+    @DisplayName("Should throw an exception message 'Too short password'")
+    void isToShort_ShouldThrowExceptionMessage_TooShortPassword() {
+      Exception exception = assertThrows(Exception.class, () -> getPassword("hello"));
+      assertEquals("Too short password", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should throw an exception if the password is missing a number")
+    void containsNumber_ShouldThrowExceptionFor_DoesNotContainANumber() {
+      assertThrows(Exception.class, () -> getPassword("passwordxxxx"));
     }
 }
