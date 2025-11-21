@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordTest {
     private IPassword getPassword(String s) throws Exception {
-         return (IPassword) new Password(s);
+        return (IPassword) new Password(s);
         // return (IPassword) new BugDoesNotTrim(s);
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugToShortPassword(s);
@@ -67,5 +67,13 @@ public class PasswordTest {
     @DisplayName("Should throw an exception if the password is missing a number")
     void containsNumber_ShouldThrowExceptionFor_DoesNotContainANumber() {
       assertThrows(Exception.class, () -> getPassword("passwordxxxx"));
+    }
+
+    @Test
+    @DisplayName("Should return false if the passwords are not the same")
+    void isPasswordSame_ShouldReturnFalse_ForDifferentPasswords() throws Exception {
+        IPassword password1 = getPassword("password12345");
+        IPassword password2 = getPassword("password123456");
+        assertFalse(password1.isPasswordSame(password2));
     }
 }
