@@ -39,6 +39,7 @@ public class PasswordTest {
         // return (IPassword) new BugMissingNumberCheck(s);
         // return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
         // return (IPassword) new BugWrongHashingAlgorithm(s);
+        // return (IPassword) new MyCustomBug(s);
     }
 
     @Test
@@ -48,43 +49,43 @@ public class PasswordTest {
 
     @Test
     @DisplayName("isPasswordSame should return true if trim is correctly implemented")
-    void isPasswordSame_ShouldReturnTrue_ForTrimmedAndUntrimmedInput() throws Exception {
+    void isPasswordSame_ShouldReturnTrue_For_TrimmedAndUntrimmedInput() throws Exception {
       IPassword password1 = getPassword("somepassword1");
-      IPassword password2 = getPassword(" somepassword1 ");
+      IPassword password2 = getPassword("somepassword1 ");
       assertTrue(password1.isPasswordSame(password2));
     }
 
     @Test
     @DisplayName("isToShort should throw an exception if the password is too short")
-    void isToShort_ShouldThrowExceptionFor_TooShortPassword() {
+    void isToShort_ShouldThrowException_For_TooShortPassword() {
       assertThrows(Exception.class, () -> getPassword("password123"));
     }
 
     @Test
     @DisplayName("isToShort should throw an exception message 'Too short password'")
-    void isToShort_ShouldThrowExceptionMessage_TooShortPassword() {
+    void isToShort_ShouldThrowExceptionMessage_For_TooShortPassword() {
       Exception exception = assertThrows(Exception.class, () -> getPassword("hello"));
       assertEquals("Too short password", exception.getMessage());
     }
 
     @Test
     @DisplayName("containsNumber should throw an exception if the password is missing a number")
-    void containsNumber_ShouldThrowExceptionFor_DoesNotContainANumber() {
+    void containsNumber_ShouldThrowException_For_DoesNotContainANumber() {
       assertThrows(Exception.class, () -> getPassword("passwordxxxx"));
     }
 
     @Test
     @DisplayName("isPasswordSame should return false if the passwords are not the same")
-    void isPasswordSame_ShouldReturnFalse_ForDifferentPasswords() throws Exception {
-        IPassword password1 = getPassword("password12345");
-        IPassword password2 = getPassword("password123456");
-        assertFalse(password1.isPasswordSame(password2));
+    void isPasswordSame_ShouldReturnFalse_For_DifferentPasswords() throws Exception {
+      IPassword password1 = getPassword("password12345");
+      IPassword password2 = getPassword("password123456");
+      assertFalse(password1.isPasswordSame(password2));
     }
 
     @ParameterizedTest
     @MethodSource("differentPasswordPairs")
     @DisplayName("simpleHash should create different hash values if the hashing algorithm is correct")
-    void simpleHash_ShouldCreateDifferentHashValues_ForDifferentPasswords(String password1, String password2) throws Exception {
+    void simpleHash_ShouldCreateDifferentHashValues_For_DifferentPasswords(String password1, String password2) throws Exception {
       IPassword pw1 = getPassword(password1);
       IPassword pw2 = getPassword(password2);
       assertNotEquals(pw1.getPasswordHash(), pw2.getPasswordHash());
