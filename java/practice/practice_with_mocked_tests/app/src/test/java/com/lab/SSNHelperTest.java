@@ -10,9 +10,9 @@ public class SSNHelperTest {
   private ISSNHelper helper;
 
   private ISSNHelper createHelper() {
-    return new SSNHelper();
-    // return new BuggySSNHelperAllowDayUpTo30();
-    //return new BuggySSNHelperAllowMonth0();
+    //return new SSNHelper();
+    //return new BuggySSNHelperAllowDayUpTo30();
+    return new BuggySSNHelperAllowMonth0();
     //return new BuggySSNHelperIncorrectFormat();
     //return new BuggySSNHelperIncorrectFormatFalse();
     //return new BuggySSNHelperMessyLuhn();
@@ -28,5 +28,11 @@ public class SSNHelperTest {
   @DisplayName("isValidDay should return true for 31 days in a month")
   void isValidDay_ShouldReturnTrue_For_ThirtyoneDays() {
     assertTrue(helper.isValidDay("31"));
+  }
+
+  @Test
+  @DisplayName("isValidMonth should return false for month 0")
+  void isValidMonth_ShouldReturnFalse_MonthZeroDoesNotExist() {
+    assertFalse(helper.isValidMonth("0"));
   }
 }
