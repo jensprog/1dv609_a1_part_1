@@ -86,7 +86,7 @@ public class SwedishSocialSecurityNumberTest {
 
  @Test
  @DisplayName("Should return the correct year when calling getYear (test substring)")
- void createValidSSN_Scenario_ExpectedResult() throws Exception {
+ void getYear_ShouldReturnIndexZeroAndOne() throws Exception {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
   when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -94,6 +94,7 @@ public class SwedishSocialSecurityNumberTest {
   when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(true);
 
   SwedishSocialSecurityNumber ssn = new SwedishSocialSecurityNumber("900101-0017", mockHelper);
+
   assertEquals("90", ssn.getYear());
   verify(mockHelper).isCorrectFormat("900101-0017");
  }
