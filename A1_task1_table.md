@@ -1,0 +1,11 @@
+# Table For A1 Task 1
+
+| Version                     | Password | BugDoesNotTrim | BugToShortPassword | BugVeryShort | BugWrongExceptionMessage | BugMissingPasswordLengthCheck | BugMissingNumberCheck | BugIsPasswordSameAlwaysTrue | BugWrongHashingAlgorithm | MyCustomBug |
+|-----------------------------|----------|----------------|---------------------|--------------|---------------------------|--------------------------------|------------------------|------------------------------|---------------------------|-------------|
+| IsPasswordSame(trim)        | ✅        | ❌              | ✅                   | ✅            | ✅                         | ✅                              | ✅                      | ✅                            | ✅                         | ✅           |
+| IsToShort(throw exception)  | ✅        | ✅              | ❌                   | ❌            | ✅                         | ❌                              | ✅                      | ✅                            | ✅                         | ✅           |
+| IsToShort(exception message)| ✅        | ✅              | ✅                   | ✅            | ❌                         | ❌                              | ✅                      | ✅                            | ✅                         | ✅           |
+| containsNumber              | ✅        | ✅              | ✅                   | ✅            | ✅                         | ✅                              | ❌                      | ✅                            | ✅                         | ✅           |
+| isPasswordSame(not same)    | ✅        | ✅              | ✅                   | ✅            | ✅                         | ✅                              | ✅                      | ❌                            | ✅                         | ✅           |
+| simpleHash                  | ✅        | ✅              | ✅                   | ✅            | ✅                        | ✅                              | ✅                      | ✅                            | ❌                         | ✅           |
+| Coverage                    | 100%     | 100%           | 100%                | 100%         | 100%                      | 100%                           | 100%                   | 100%                         | 100%                      | 100%        |
