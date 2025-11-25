@@ -2,25 +2,30 @@ package com.lab;
 
 public class SSNHelper implements ISSNHelper {
     
+    @Override
     public boolean isCorrectLength(String stringInput) {
         return stringInput.length() == 11; // YYMMDD-XXXX
     }
     
+    @Override
     public boolean isCorrectFormat(String stringInput) {
         // Regex pattern: 6 digits, hyphen, 4 digits
         return stringInput.matches("^\\d{6}-\\d{4}$");
     }
     
+    @Override
     public boolean isValidMonth(String monthString) {
         int month = Integer.parseInt(monthString);
         return month >= 1 && month <= 12;
     }
     
+    @Override
     public boolean isValidDay(String dayString) {
         int day = Integer.parseInt(dayString);
         return day >= 1 && day <= 31;
     }
     
+    @Override
     public boolean luhnIsCorrect(String stringInput) {
         // Remove hyphen and convert to array of digits
         String digitsOnly = stringInput.replace("-", "");
