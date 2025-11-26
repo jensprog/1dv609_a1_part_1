@@ -85,7 +85,7 @@ public class SwedishSocialSecurityNumberTest {
  }
 
  @Test
- @DisplayName("Should return the correct year when calling getYear (test substring)")
+ @DisplayName("getYear should return index 0 and 1 when invoked (test substring)")
  void getYear_ShouldReturnIndexZeroAndOne() throws Exception {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
@@ -97,5 +97,54 @@ public class SwedishSocialSecurityNumberTest {
 
   assertEquals("90", ssn.getYear());
   verify(mockHelper).isCorrectFormat("900101-0017");
+ }
+
+ // <------- Additional tests for better coverage ------->
+ @Test
+ @DisplayName("isCorrectFormat should throw exception if the format is incorrect")
+ void isCorrectFormat_ShouldThrowException_For_IncorrectFormat() {
+  when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
+  when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(false);
+  when(mockHelper.isValidMonth("01")).thenReturn(true);
+  when(mockHelper.isValidDay("01")).thenReturn(true);
+  when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(true);
+
+  assertThrows(Exception.class, () -> {
+    new SwedishSocialSecurityNumber("900101-0017", mockHelper);
+  });
+
+  verify(mockHelper).isCorrectFormat("900101-0017");
+ }
+
+ @Test
+ @DisplayName("isValidMonth should throw exception if the substring is incorrect")
+ void isValidMonth_ShouldThrowException_For_IncorrectSubstring() {
+  when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
+  when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
+  when(mockHelper.isValidMonth("01")).thenReturn(false);
+  when(mockHelper.isValidDay("01")).thenReturn(true);
+  when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(true);
+
+  assertThrows(Exception.class, () -> {
+    new SwedishSocialSecurityNumber("900101-0017", mockHelper);
+  });
+
+  verify(mockHelper).isValidMonth("01");
+ }
+
+ @Test
+ @DisplayName("isValidDay should throw exception if the substring is incorrect")
+ void isValidDay_ShouldThrowException_For_IncorrectSubstring() {
+  when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
+  when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
+  when(mockHelper.isValidMonth("01")).thenReturn(true);
+  when(mockHelper.isValidDay("01")).thenReturn(false);
+  when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(true);
+
+  assertThrows(Exception.class, () -> {
+    new SwedishSocialSecurityNumber("900101-0017", mockHelper);
+  });
+
+  verify(mockHelper).isValidDay("01");
  }
 }
