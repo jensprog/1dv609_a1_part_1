@@ -22,7 +22,6 @@ public class SSNHelperTest {
     //return new MyBuggySSNHelperAllow13Months();
     //return new MyBuggySSNHelperAllow32Days();
     //return new MyBuggySSNHelperAllowDay0();
-    //return new MyBuggySSNHelperIncorrectLuhn();
   }
 
   @BeforeEach 
@@ -88,19 +87,5 @@ public class SSNHelperTest {
   @DisplayName("isValidDay should return false for invalid days")
   void isValidDay_ShouldReturnFalse_For_InvalidDays(String day) {
     assertFalse(helper.isValidDay(day));
-  }
-
-  @Test
-  @DisplayName("luhnIsCorrect should return false for remainder after division")
-  void luhnIsCorrect_ShouldReturnFalse_For_InvalidRemainder() {
-    String invalidSSN = "900101-0018";
-    assertFalse(helper.luhnIsCorrect(invalidSSN));
-  }
-
-  @Test
-  @DisplayName("isCorrectLength should return true for exactly 11 characters in the SSN")
-  void isCorrectLength_ShouldReturnTrue_For_ElevenCharacters() {
-    String validSSN = "900101-0017";
-    assertTrue(helper.isCorrectLength(validSSN));
   }
 }

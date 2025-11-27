@@ -1,6 +1,6 @@
 # Table For A1 Task 1
 
-| Version                     | Password | BugDoesNotTrim | BugToShortPassword | BugVeryShort | BugWrongExceptionMessage | BugMissingPasswordLengthCheck | BugMissingNumberCheck | BugIsPasswordSameAlwaysTrue | BugWrongHashingAlgorithm | MyCustomBug |
+| Test Case                    | Password | BugDoesNotTrim | BugToShortPassword | BugVeryShort | BugWrongExceptionMessage | BugMissingPasswordLengthCheck | BugMissingNumberCheck | BugIsPasswordSameAlwaysTrue | BugWrongHashingAlgorithm | MyCustomBug |
 |-----------------------------|----------|----------------|---------------------|--------------|---------------------------|--------------------------------|------------------------|------------------------------|---------------------------|-------------|
 | IsPasswordSame(trim)        | ✅        | ❌              | ✅                   | ✅            | ✅                         | ✅                              | ✅                      | ✅                            | ✅                         | ✅           |
 | IsToShort(throw exception)  | ✅        | ✅              | ❌                   | ❌            | ✅                         | ❌                              | ✅                      | ✅                            | ✅                         | ✅           |

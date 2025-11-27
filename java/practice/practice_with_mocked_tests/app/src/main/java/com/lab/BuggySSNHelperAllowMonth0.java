@@ -4,7 +4,7 @@ public class BuggySSNHelperAllowMonth0 implements ISSNHelper {
     
     @Override
     public boolean isCorrectLength(String stringInput) {
-        return stringInput.length() >= 11; 
+        return stringInput.length() == 11; 
     }
     
     @Override
