@@ -39,7 +39,7 @@ public class SwedishSocialSecurityNumberTest {
 
   @Test
   @DisplayName("isCorrectLength should throw an exception for too short SSN")
-  public void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
+  void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
     when(mockHelper.isCorrectLength("900101-001")).thenReturn(false);
     when(mockHelper.isCorrectFormat("900101-001")).thenReturn(true);
     when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -55,7 +55,7 @@ public class SwedishSocialSecurityNumberTest {
 
   @Test
   @DisplayName("luhnIsCorrect should throw an exception for incorrect algorithm")
-  public void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
+  void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
     when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
     when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
     when(mockHelper.isValidMonth("01")).thenReturn(true);
