@@ -39,7 +39,7 @@ public class SwedishSocialSecurityNumberTest {
 
   @Test
   @DisplayName("isCorrectLength should throw an exception for too short SSN")
-  void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
+  public void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
     when(mockHelper.isCorrectLength("900101-001")).thenReturn(false);
     when(mockHelper.isCorrectFormat("900101-001")).thenReturn(true);
     when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -55,7 +55,7 @@ public class SwedishSocialSecurityNumberTest {
 
   @Test
   @DisplayName("luhnIsCorrect should throw an exception for incorrect algorithm")
-  void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
+  public void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
     when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
     when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
     when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -71,7 +71,7 @@ public class SwedishSocialSecurityNumberTest {
 
  @Test
  @DisplayName("Should successfully create a valid SSN when the input has whitespaces (test trimming)")
- void createValidSSN_WithUntrimmedInput() throws Exception {
+ public void createValidSSN_WithUntrimmedInput() throws Exception {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
   when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -86,7 +86,7 @@ public class SwedishSocialSecurityNumberTest {
 
  @Test
  @DisplayName("getYear should return index 0 and 1 when invoked (test substring)")
- void getYear_ShouldReturnIndexZeroAndOne() throws Exception {
+ public void getYear_ShouldReturnIndexZeroAndOne() throws Exception {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
   when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -102,7 +102,7 @@ public class SwedishSocialSecurityNumberTest {
  // <------- Additional tests for better coverage ------->
  @Test
  @DisplayName("isCorrectFormat should throw exception if the format is incorrect")
- void isCorrectFormat_ShouldThrowException_For_IncorrectFormat() {
+ public void isCorrectFormat_ShouldThrowException_For_IncorrectFormat() {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(false);
   when(mockHelper.isValidMonth("01")).thenReturn(true);
@@ -118,7 +118,7 @@ public class SwedishSocialSecurityNumberTest {
 
  @Test
  @DisplayName("isValidMonth should throw exception if the substring is incorrect")
- void isValidMonth_ShouldThrowException_For_IncorrectSubstring() {
+ public void isValidMonth_ShouldThrowException_For_IncorrectSubstring() {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
   when(mockHelper.isValidMonth("01")).thenReturn(false);
@@ -134,7 +134,7 @@ public class SwedishSocialSecurityNumberTest {
 
  @Test
  @DisplayName("isValidDay should throw exception if the substring is incorrect")
- void isValidDay_ShouldThrowException_For_IncorrectSubstring() {
+ public void isValidDay_ShouldThrowException_For_IncorrectSubstring() {
   when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
   when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
   when(mockHelper.isValidMonth("01")).thenReturn(true);

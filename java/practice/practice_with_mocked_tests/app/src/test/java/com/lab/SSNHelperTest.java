@@ -31,38 +31,38 @@ public class SSNHelperTest {
 
   @Test
   @DisplayName("isValidDay should return true for 31 days in a month")
-  void isValidDay_ShouldReturnTrue_For_ThirtyoneDays() {
+  public void isValidDay_ShouldReturnTrue_For_ThirtyoneDays() {
     assertTrue(helper.isValidDay("31"));
   }
 
   @Test
   @DisplayName("isValidMonth should return false for month 0")
-  void isValidMonth_ShouldReturnFalse_MonthZeroDoesNotExist() {
+  public void isValidMonth_ShouldReturnFalse_MonthZeroDoesNotExist() {
     assertFalse(helper.isValidMonth("0"));
   }
 
   @Test
   @DisplayName("isCorrectFormat should return true for format XXXXXX-XXXX")
-  void isCorrectFormat_ShouldReturnTrue_For_ValidFormat() {
+  public void isCorrectFormat_ShouldReturnTrue_For_ValidFormat() {
     assertTrue(helper.isCorrectFormat("900101-0017"));
   }
 
   @Test
   @DisplayName("isCorrectFormat should return false for format XXXXXXXXXX")
-  void isCorrectFormat_ShouldReturnFalse_For_InvalidFormat() {
+  public void isCorrectFormat_ShouldReturnFalse_For_InvalidFormat() {
     assertFalse(helper.isCorrectFormat("9001010017"));
   }
 
   @Test
   @DisplayName("luhnIsCorrect should return true for correct Luhn algorithm")
-  void luhnIsCorrect_ShouldReturnTrue_For_CorrectLuhnAlgorithm() {
+  public void luhnIsCorrect_ShouldReturnTrue_For_CorrectLuhnAlgorithm() {
     String validSSN = "900101-0017";
     assertTrue(helper.luhnIsCorrect(validSSN));
   }
 
   @Test
   @DisplayName("isCorrectLength should return false for too many characters")
-  void isCorrectLength_ShouldReturnFalse_For_SSNWithTooManyCharacters() {
+  public void isCorrectLength_ShouldReturnFalse_For_SSNWithTooManyCharacters() {
     String invalidSSN = "900101-00178";
     assertFalse(helper.isCorrectLength(invalidSSN));
   }
@@ -71,21 +71,21 @@ public class SSNHelperTest {
   @ParameterizedTest
   @ValueSource(strings = {"1", "6", "12"})
   @DisplayName("isValidMonth should return true for valid month range")
-  void isValidMonth_ShouldReturnTrue_For_ValidMonths(String month) {
+  public void isValidMonth_ShouldReturnTrue_For_ValidMonths(String month) {
     assertTrue(helper.isValidMonth(month));
   }
 
   @ParameterizedTest
   @ValueSource(strings = {"-1", "0", "13"})
   @DisplayName("isValidMonth should return false for invalid month range")
-  void isValidMonth_ShouldReturnFalse_For_InvalidMonths(String month) {
+  public void isValidMonth_ShouldReturnFalse_For_InvalidMonths(String month) {
     assertFalse(helper.isValidMonth(month));
   }
 
   @ParameterizedTest
   @ValueSource(strings = {"0", "32"})
   @DisplayName("isValidDay should return false for invalid days")
-  void isValidDay_ShouldReturnFalse_For_InvalidDays(String day) {
+  public void isValidDay_ShouldReturnFalse_For_InvalidDays(String day) {
     assertFalse(helper.isValidDay(day));
   }
 }
