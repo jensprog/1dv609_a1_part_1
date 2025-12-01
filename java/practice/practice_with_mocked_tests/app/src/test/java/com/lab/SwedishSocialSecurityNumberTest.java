@@ -37,14 +37,14 @@ public class SwedishSocialSecurityNumberTest {
     verify(mockHelper).luhnIsCorrect("900101-0017");
   }
 
-  @Test
-  @DisplayName("isCorrectLength should throw an exception for too short SSN")
-  void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
-    when(mockHelper.isCorrectLength("900101-001")).thenReturn(false);
-    when(mockHelper.isCorrectFormat("900101-001")).thenReturn(true);
-    when(mockHelper.isValidMonth("01")).thenReturn(true);
-    when(mockHelper.isValidDay("01")).thenReturn(true);
-    when(mockHelper.luhnIsCorrect("900101-001")).thenReturn(true);
+@Test
+@DisplayName("isCorrectLength should throw an exception for too short SSN")
+void isCorrectLength_ShouldThrowException_For_TooShortSSN() {
+  when(mockHelper.isCorrectLength("900101-001")).thenReturn(false);
+  when(mockHelper.isCorrectFormat("900101-001")).thenReturn(true);
+  when(mockHelper.isValidMonth("01")).thenReturn(true);
+  when(mockHelper.isValidDay("01")).thenReturn(true);
+  when(mockHelper.luhnIsCorrect("900101-001")).thenReturn(true);
 
     assertThrows(Exception.class, () -> {
       new SwedishSocialSecurityNumber("900101-001", mockHelper);
@@ -53,14 +53,14 @@ public class SwedishSocialSecurityNumberTest {
     verify(mockHelper).isCorrectLength("900101-001");
   }
 
-  @Test
-  @DisplayName("luhnIsCorrect should throw an exception for incorrect algorithm")
-  void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
-    when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
-    when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
-    when(mockHelper.isValidMonth("01")).thenReturn(true);
-    when(mockHelper.isValidDay("01")).thenReturn(true);
-    when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(false);
+@Test
+@DisplayName("luhnIsCorrect should throw an exception for incorrect algorithm")
+void luhnIsCorrect_ShouldThrowException_For_IncorrectAlgorithm() {
+  when(mockHelper.isCorrectLength("900101-0017")).thenReturn(true);
+  when(mockHelper.isCorrectFormat("900101-0017")).thenReturn(true);
+  when(mockHelper.isValidMonth("01")).thenReturn(true);
+  when(mockHelper.isValidDay("01")).thenReturn(true);
+  when(mockHelper.luhnIsCorrect("900101-0017")).thenReturn(false);
 
   assertThrows(Exception.class, () -> {
     new SwedishSocialSecurityNumber("900101-0017", mockHelper);
